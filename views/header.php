@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE HTML SYSTEM>
 <html>
 <head>
@@ -35,7 +32,7 @@ session_start();
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">About <span class="sr-only">(current)</span></a></li>
+        <li><a href="/about.php">About <span class="sr-only">(current)</span></a></li>
         <li><a href="/blog.php">Blog</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -43,8 +40,8 @@ session_start();
             if(isset($_SESSION['id'])){
                 require $_SERVER["DOCUMENT_ROOT"] . '/views/profileMenu.php';
             }else{    
-                print("<li><a class=\"disabled\" href=\"#\" data-toggle=\"modal\" data-target=\"#register\">Register</a></li>");
-                print("<li><a class=\"disabled\" href=\"#\" data-toggle=\"modal\" data-target=\"#login\">Login</a></li>");
+                print("<li><a class=\"disabled\" href=\"#\" data-toggle=\"modal\" data-target=\"#register\"><span class=\"glyphicon glyphicon-user\"></span> Register</a></li>");
+                print("<li><a class=\"disabled\" href=\"#\" data-toggle=\"modal\" data-target=\"#login\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>");
             }    
         ?>
       </ul>

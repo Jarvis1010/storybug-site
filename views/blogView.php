@@ -6,9 +6,11 @@
                 foreach ($rows as $row)
                 {
                     print("<div class=\"post panel-body\">");
-                    print("<h3 class =\"post title\">{$row["postTitle"]}</h3>");
-                    print("<p class = \"post date\">{$row["Date"]}</p>");
-                    print("{$row["Content"]}");
+                        print("<article>");
+                            print("<h3 class =\"post title\"><a href=\"/blog.php?post={$row["postTitle"]}\">{$row["postTitle"]}</a></h3>");
+                            print(sprintf("<p class = \"post date\">%s</p>",date('jS \of F Y h:i:s A',strtotime($row["Date"]))));
+                            print("{$row["Content"]}");
+                        print("</article>");
                     print("</div>");
                     print("<hr/>");
                 }

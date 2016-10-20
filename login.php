@@ -1,13 +1,7 @@
 <?php 
 
-require $_SERVER["DOCUMENT_ROOT"] . '/includes/helper.php';
-require_once $_SERVER["DOCUMENT_ROOT"] . '/includes/database.php';
+require $_SERVER["DOCUMENT_ROOT"] . '/includes/config.php';
 
-$database = new dataBase();
-$database->servername = "sql202.byethost3.com";
-$database->username = "b3_19018156";
-$database->password = "Thai1413";
-$database->dbname = "b3_19018156_blog";
 
 // validate submission
 if (empty($_POST["username"]))
@@ -31,11 +25,16 @@ else if (empty($_POST["password"]))
             // compare hash of user's input against hash that's in database
             if (password_verify($_POST["password"], $row["hash"]))
             {
-                session_start();
-                // remember that user's now logged in by storing user's ID in session
+                
+                // remember that user's now logged in by storing user's info in session
                 $_SESSION["id"] = $row["id"];
                 $_SESSION["firstname"] = $row["firstName"];
+                $_SESSION["username"] = $row["username"];
                 $_SESSION["blogUser"] = $row["blogUser"];
+                
+                //saves username for 7 days in a cookie
+                setcookie("username", $row["username"], time()+60*60*24*7);
+                
                 // redirect to portfolio
                 header("location:/");
             }
@@ -46,4 +45,4 @@ else if (empty($_POST["password"]))
         }
 }
 
-?>
+?>	
